@@ -1,0 +1,5 @@
+bakup all the servers online.
+The steps are,
+1) install rysncd server at each server
+2) config the bakup files by rsyncd configure
+3) sync bakup files on client machine
