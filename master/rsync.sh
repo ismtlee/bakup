@@ -4,7 +4,7 @@ export RSYNC_PASSWORD=passwd
 export PATH=$PATH:/bin:/usr/bin:/usr/local/bin 
 
 # 设置远程服务器与需要备份的目录
-SERVER=rsync@Server 
+SERVER=www@master.server
 #DIR=(cellar script deploy nginx cron etc profile)
 DIR=(cellar script)
 
