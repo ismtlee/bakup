@@ -27,16 +27,19 @@ install -d $BDIR/$BASE
 # 实现数据备份与同步，将日志邮寄给 root 用户
 run_rsync() 
 { 
- echo "==========Begin rsync: `date`===========" >>$LOG 2>&1 
+ echo "==========Begin rsync: `date`==========="
+ #echo "==========Begin rsync: `date`===========" >>$LOG 2>&1 
  du -s $BDIR/* >>$LOG 2>&1 
  
  for ary in ${DIR[@]} 
  do 
-    rsync $OPTS $SERVER::$ary $BDIR/$BASE  >>$LOG 2>&1 
+    rsync $OPTS $SERVER::$ary $BDIR/$BASE 
+    #rsync $OPTS $SERVER::$ary $BDIR/$BASE  >>$LOG 2>&1 
  done
 
  #rsync $OPTS $SERVER::$DIR $BDIR/$BASE  >>$LOG 2>&1 
- echo "==========End rsync: `date`===========" >>$LOG 2>&1 
+ echo "==========End rsync: `date`==========="
+ #echo "==========End rsync: `date`===========" >>$LOG 2>&1 
  mail root -s "Backup Report" < $LOG 
  rm $LOG 
 } 
