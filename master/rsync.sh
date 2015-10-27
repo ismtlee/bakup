@@ -18,7 +18,7 @@ INCREMENTDIR=`date +%Y-%m-%d`
 LOG=/tmp/rsync.log 
 
 # 参数设置，调用 backup-dir 将服务器端的增量文件存储到 INCREMENTDIR 目录下
-OPTS="-avz --force --delete --exclude='.svn/***' --password-file=/etc/rsyncd/rsync.password  -b  --backup-dir=$BDIR/$INCREMENTDIR/$SERVER/$ary --ignore-errors"
+OPTS="-avz --force --delete --exclude='.svn/***' --password-file=/etc/rsyncd/rsync.password --ignore-errors -b  --backup-dir=$BDIR/$INCREMENTDIR/$SERVER"
 #OPTS="-avz--force --delete --delete-excluded  --exclude-from=$EXCLUDES -b  --backup-dir=$BDIR/$INCREMENTDIR --ignore-errors"
 
 # 确保客户端上的用于备份的目录存在
@@ -33,7 +33,7 @@ run_rsync()
  
  for ary in ${DIR[@]} 
  do 
-    rsync $OPTS $SERVER::$ary $BDIR/$BASE/$ary 
+    rsync $OPTS/$ary $SERVER::$ary $BDIR/$BASE/$ary 
     #rsync $OPTS $SERVER::$ary $BDIR/$BASE  >>$LOG 2>&1 
  done
 
