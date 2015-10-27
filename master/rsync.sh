@@ -17,8 +17,8 @@ EXCLUDES=/root/rsync/excludes
 LOG=/tmp/rsync.log 
 
 // 参数设置，调用 backup-dir 将服务器端的增量文件存储到 INCREMENTDIR 目录下
-OPTS="-avz--force --delete --delete-excluded  --exclude-from=$EXCLUDES -b 
- --backup-dir=$BDIR/$INCREMENTDIR --ignore-errors"
+OPTS="-avz--force --delete --delete-excluded  --exclude-from=$EXCLUDES -b  --backup-dir=$BDIR/$INCREMENTDIR --ignore-errors"
+#OPTS="-avz--force --delete --delete-excluded  --exclude-from=$EXCLUDES -b  --backup-dir=$BDIR/$INCREMENTDIR --ignore-errors"
 
 // 确保客户端上的用于备份的目录存在
 install -d $BDIR/$BASE 
@@ -39,6 +39,8 @@ run_rsync()
  #rm $LOG 
 } 
 
+run_rsync
+
  // 条件测试，运行程序
 if [ -f $EXCLUDES ]; then 
        if [ -d $BDIR ]; then 
@@ -49,3 +51,4 @@ if [ -f $EXCLUDES ]; then
        else 
                echo "cant find $EXCLUDES"; exit 
 fi
+
