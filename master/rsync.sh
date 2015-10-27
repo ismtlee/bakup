@@ -9,8 +9,8 @@ SERVER=www@master.server
 DIR=(cellar script)
 
 # 设置客户端上的用于备份的目录
-BDIR=/Backup 
-BASE=Current 
+BDIR=/Backup
+BASE=Current/$SERVER
 INCREMENTDIR=`date +%Y-%m-%d` 
 
 # 在客户端灵活使用 exclude 功能；设置日志
@@ -33,7 +33,7 @@ run_rsync()
  
  for ary in ${DIR[@]} 
  do 
-    rsync $OPTS $SERVER::$ary $BDIR/$BASE 
+    rsync $OPTS $SERVER::$ary $BDIR/$BASE/$ary 
     #rsync $OPTS $SERVER::$ary $BDIR/$BASE  >>$LOG 2>&1 
  done
 
