@@ -4,9 +4,7 @@ export PATH=$PATH:/bin:/usr/bin:/usr/local/bin
 
 # 设置远程服务器与需要备份的目录
 SERVER=bak_usr@master.server
-#DIR=(cellar scripts deploy nginx iptables cron etc profile)
-DIR=(iptables)
-FILES=(/etc/sysconfig/iptables /var/spool/cron/root /etc/profile)
+DIR=(cellar scripts deploy nginx cron sys_etc usr_etc) 
 
 # 设置客户端上的用于备份的目录
 BDIR=/Backup
@@ -36,11 +34,6 @@ run_rsync()
  do 
     rsync $OPTS/$ary $SERVER::$ary $BDIR/$BASE/$ary 
     #rsync $OPTS $SERVER::$ary $BDIR/$BASE  >>$LOG 2>&1 
- done
-
- for ffile in ${FILES[@]}
- do
-     rsync $OPTS/$BAK_FILES $SERVER:$ffile $BDIR/$BASE/$BAK_FILES/$ffile
  done
 
  #rsync $OPTS $SERVER::$DIR $BDIR/$BASE  >>$LOG 2>&1 
