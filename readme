@@ -3,3 +3,28 @@ The steps are,
 1) install rysncd server at each server
 2) config the bakup files by rsyncd configure
 3) sync bakup files on client machine
+
+How to add a server being bakup?
+1) copy the template from  other server, such as, cp -r svr_master svr_new
+2) add hostname to client machine's hosts file, such as, 209.4.5.12 new.server, it can protect svr_new's true ip
+"new" is short for svr_new
+3) and also, add hostname to svr_new, such as, 204.3.41.2 client.bak, client.bak is all the server's client bakup machine
+4) modify the rsyncd.conf in sample, and make svr_new change its default /etc/rsyncd/rsyncd.conf to this one,
+start_rsync="rsync --daemon --config=/data/bakup/master/rsyncd.conf"  in /etc/init.d/rsyncd
+
+add rsyncd module as you like, that's also the data you should bakup
+
+5) modify rsync.sh 
+SERVER=bak_usr@new.server
+DIR=(module1, module2, ...)
+LOG=/logs/rsync_bak_new.log
+
+6) add user bak_usr, run /data/bakup/adduser.sh
+
+7)start svr_new's rsyncd daemon.
+ 
+8) add /bin/sh /data/bakup/master/data/bakup/svr_new/rsync.sh to client machine's cron.sh script.
+
+That's all, enjoy!
+
+If you have any questions, plz contact me(ismtlee@gmail.com)

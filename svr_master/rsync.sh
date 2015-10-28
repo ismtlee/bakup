@@ -1,5 +1,5 @@
 #!/bin/sh 
-export RSYNC_PASSWORD=passwd 
+#export RSYNC_PASSWORD=passwd 
 export PATH=$PATH:/bin:/usr/bin:/usr/local/bin 
 
 # 设置远程服务器与需要备份的目录
@@ -14,7 +14,7 @@ INCREMENTDIR=`date +%Y-%m-%d`
 
 # 在客户端灵活使用 exclude 功能；设置日志
 EXCLUDES=/etc/rsyncd/excludes
-LOG=/logs/rsync_cron.log 
+LOG=/logs/rsync_bak_master.log 
 
 # 参数设置，调用 backup-dir 将服务器端的增量文件存储到 INCREMENTDIR 目录下
 OPTS="-avz --force --delete --exclude-from=$EXCLUDES --password-file=/etc/rsyncd/rsync.password --ignore-errors -b  --backup-dir=$BDIR/$INCREMENTDIR/$SERVER"
