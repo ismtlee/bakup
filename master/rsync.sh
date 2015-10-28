@@ -6,10 +6,12 @@ export PATH=$PATH:/bin:/usr/bin:/usr/local/bin
 SERVER=bak_usr@master.server
 #DIR=(cellar scripts deploy nginx iptables cron etc profile)
 DIR=(iptables)
+FILES=(/etc/sysconfig/iptables /var/spool/cron/root /etc/profile)
 
 # 设置客户端上的用于备份的目录
 BDIR=/Backup
 BASE=Current/$SERVER
+BAK_FILES=BAK_FILES
 INCREMENTDIR=`date +%Y-%m-%d` 
 
 # 在客户端灵活使用 exclude 功能；设置日志
@@ -34,6 +36,11 @@ run_rsync()
  do 
     rsync $OPTS/$ary $SERVER::$ary $BDIR/$BASE/$ary 
     #rsync $OPTS $SERVER::$ary $BDIR/$BASE  >>$LOG 2>&1 
+ done
+
+ for ffile in ${FILES[@]}
+ do
+     rsync $OPTS/$BAK_FILES $SERVER:$ffile $BDIR/$BASE/$BAK_FILES/$ffile
  done
 
  #rsync $OPTS $SERVER::$DIR $BDIR/$BASE  >>$LOG 2>&1 
