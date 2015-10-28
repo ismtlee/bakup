@@ -1,5 +1,4 @@
 #!/bin/sh 
-
 export RSYNC_PASSWORD=passwd 
 export PATH=$PATH:/bin:/usr/bin:/usr/local/bin 
 
