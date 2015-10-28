@@ -5,7 +5,7 @@ export PATH=$PATH:/bin:/usr/bin:/usr/local/bin
 # 设置远程服务器与需要备份的目录
 SERVER=bak_usr@master.server
 #DIR=(cellar scripts deploy nginx iptables cron etc profile)
-DIR=(cellar scripts)
+DIR=(iptables)
 
 # 设置客户端上的用于备份的目录
 BDIR=/Backup
