@@ -14,7 +14,7 @@ INCREMENTDIR=`date +%Y-%m-%d`
 
 # 在客户端灵活使用 exclude 功能；设置日志
 EXCLUDES=/etc/rsyncd/excludes
-LOG=/tmp/rsync.log 
+LOG=/logs/rsync_cron.log 
 
 # 参数设置，调用 backup-dir 将服务器端的增量文件存储到 INCREMENTDIR 目录下
 OPTS="-avz --force --delete --exclude-from=$EXCLUDES --password-file=/etc/rsyncd/rsync.password --ignore-errors -b  --backup-dir=$BDIR/$INCREMENTDIR/$SERVER"
@@ -26,8 +26,7 @@ install -d $BDIR/$BASE
 # 实现数据备份与同步，将日志邮寄给 root 用户
 run_rsync() 
 { 
- echo "==========Begin rsync: `date`==========="
- #echo "==========Begin rsync: `date`===========" >>$LOG 2>&1 
+ echo "==========Begin rsync: `date`===========" >>$LOG 2>&1 
  du -s $BDIR/* >>$LOG 2>&1 
  
  for ary in ${DIR[@]} 
@@ -37,8 +36,7 @@ run_rsync()
  done
 
  #rsync $OPTS $SERVER::$DIR $BDIR/$BASE  >>$LOG 2>&1 
- echo "==========End rsync: `date`==========="
- #echo "==========End rsync: `date`===========" >>$LOG 2>&1 
+ echo "==========End rsync: `date`===========" >>$LOG 2>&1 
  #mail root -s "Backup Report" < $LOG 
  #rm $LOG 
 } 
