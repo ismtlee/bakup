@@ -32,15 +32,15 @@ run_rsync()
  
  for ary in ${DIR[@]} 
  do 
-    rsync $OPTS/$ary $SERVER::$ary $BDIR/$BASE/$ary 
+    rsync $OPTS/$ary $SERVER::$ary $BDIR/$BASE/$ary >> $LOG 2>&1
     #rsync $OPTS $SERVER::$ary $BDIR/$BASE  >>$LOG 2>&1 
  done
 
  #rsync $OPTS $SERVER::$DIR $BDIR/$BASE  >>$LOG 2>&1 
  echo "==========End rsync: `date`==========="
  #echo "==========End rsync: `date`===========" >>$LOG 2>&1 
- mail root -s "Backup Report" < $LOG 
- rm $LOG 
+ #mail root -s "Backup Report" < $LOG 
+ #rm $LOG 
 } 
 
 run_rsync
