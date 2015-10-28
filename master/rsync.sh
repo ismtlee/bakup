@@ -14,11 +14,11 @@ BASE=Current/$SERVER
 INCREMENTDIR=`date +%Y-%m-%d` 
 
 # 在客户端灵活使用 exclude 功能；设置日志
-#EXCLUDES=/root/rsync/excludes 
+EXCLUDES=/etc/rsyncd/excludes
 LOG=/tmp/rsync.log 
 
 # 参数设置，调用 backup-dir 将服务器端的增量文件存储到 INCREMENTDIR 目录下
-OPTS="-avz --force --delete --exclude='.git/***' --password-file=/etc/rsyncd/rsync.password --ignore-errors -b  --backup-dir=$BDIR/$INCREMENTDIR/$SERVER"
+OPTS="-avz --force --delete --exclude-from=$EXCLUDES --password-file=/etc/rsyncd/rsync.password --ignore-errors -b  --backup-dir=$BDIR/$INCREMENTDIR/$SERVER"
 #OPTS="-avz--force --delete --delete-excluded  --exclude-from=$EXCLUDES -b  --backup-dir=$BDIR/$INCREMENTDIR --ignore-errors"
 
 # 确保客户端上的用于备份的目录存在
