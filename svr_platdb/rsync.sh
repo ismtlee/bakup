@@ -4,7 +4,7 @@ export PATH=$PATH:/bin:/usr/bin:/usr/local/bin
 
 # 设置远程服务器与需要备份的目录
 SERVER=bak_usr@platdb.server
-DIR=(cellar scripts deploy nginx cron sys_etc usr_etc data) 
+DIR=(cellar scripts deploy nginx cron sys_etc usr_etc database) 
 
 # 设置客户端上的用于备份的目录
 BDIR=/Backup
