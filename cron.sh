@@ -1,4 +1,5 @@
 #!/bin/sh
+#0 0 * * * /bin/sh  /data/bakup/cron.sh
 /bin/sh /data/bakup/svr_master/rsync.sh
 /bin/sh /data/bakup/svr_slave/rsync.sh
 /bin/sh /data/bakup/svr_platdb/rsync.sh
