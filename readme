@@ -10,16 +10,17 @@ How to add a server being bakup?
 "new" is short for svr_new
 3) and also, add hostname to svr_new, such as, 204.3.41.2 client.bak, client.bak is all the server's client bakup machine
 4) modify the rsyncd.conf in sample, and make svr_new change its default /etc/rsyncd/rsyncd.conf to this one,
-start_rsync="rsync --daemon --config=/data/bakup/master/rsyncd.conf"  in /etc/init.d/rsyncd
+start_rsync="rsync --daemon --config=/data/bakup/svr_new/rsyncd.conf"  in /etc/init.d/rsyncd
 
 add rsyncd module as you like, that's also the data you should bakup
 
-5) modify rsync.sh 
+5) modify rsync.sh, this script will run at client machine. 
 SERVER=bak_usr@new.server
 DIR=(module1, module2, ...)
 LOG=/logs/rsync_bak_new.log
 
 6) add user bak_usr, run /data/bakup/adduser.sh
+Then put bak_usr:yourownpass to /etc/rsyncd/rsyncd.secrets
 
 7)start svr_new's rsyncd daemon.
  
